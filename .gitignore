@@ -2,7 +2,6 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-.kotlin
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -35,15 +34,5 @@ build/
 ### VS Code ###
 .vscode/
 
-### Custom Ignore for Library Project ###
 ### Mac OS ###
 .DS_Store
-
-# Database
-*.db
-*.sqlite
-
-# IntelliJ files
-.idea/
-*.iml
-target/
