@@ -21,7 +21,7 @@
     <!-- Dependencies -->
     <dependencies>
 
-        <!-- jOOQ runtime -->
+        <!-- jOOQ Runtime -->
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
@@ -76,6 +76,15 @@
                     <generator>
                         <database>
                             <name>org.jooq.meta.sqlite.SQLiteDatabase</name>
+
+                            <!-- WICHTIG: Schema ausführen -->
+                            <properties>
+                                <property>
+                                    <key>scripts</key>
+                                    <value>src/main/resources/db/schema.sql</value>
+                                </property>
+                            </properties>
+
                             <includes>.*</includes>
                         </database>
 
