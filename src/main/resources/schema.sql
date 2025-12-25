@@ -1,7 +1,27 @@
-CREATE TABLE books (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  author TEXT NOT NULL,
-  isbn VARCHAR(20) NOT NULL UNIQUE,
-  published_year INTEGER
+CREATE TABLE IF NOT EXISTS book (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    isbn VARCHAR(20) NOT NULL UNIQUE,
+    published_year INTEGER,
+    total_copies INTEGER NOT NULL DEFAULT 1,
+    available_copies INTEGER NOT NULL DEFAULT 1
+);
+
+CREATE TABLE IF NOT EXISTS member (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    membership_date VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS loan (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    book_id INTEGER NOT NULL,
+    member_id INTEGER NOT NULL,
+    loan_date VARCHAR(20) NOT NULL,
+    due_date VARCHAR(20) NOT NULL,
+    return_date VARCHAR(20),
+    FOREIGN KEY (book_id) REFERENCES book(id),
+    FOREIGN KEY (member_id) REFERENCES member(id)
 );
