@@ -1,4 +1,5 @@
-CREATE TABLE IF NOT EXISTS book (
+
+CREATE TABLE IF NOT EXISTS books (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
@@ -8,20 +9,20 @@ CREATE TABLE IF NOT EXISTS book (
     available_copies INTEGER NOT NULL DEFAULT 1
 );
 
-CREATE TABLE IF NOT EXISTS member (
+CREATE TABLE IF NOT EXISTS members (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     membership_date VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS loan (
+CREATE TABLE IF NOT EXISTS loans (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     book_id INTEGER NOT NULL,
     member_id INTEGER NOT NULL,
     loan_date VARCHAR(20) NOT NULL,
     due_date VARCHAR(20) NOT NULL,
     return_date VARCHAR(20),
-    FOREIGN KEY (book_id) REFERENCES book(id),
-    FOREIGN KEY (member_id) REFERENCES member(id)
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    FOREIGN KEY (member_id) REFERENCES members(id)
 );
