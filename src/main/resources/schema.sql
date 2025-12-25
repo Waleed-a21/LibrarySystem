@@ -1,0 +1,7 @@
+CREATE TABLE books (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  author TEXT NOT NULL,
+  isbn VARCHAR(20) NOT NULL UNIQUE,
+  published_year INTEGER
+);
