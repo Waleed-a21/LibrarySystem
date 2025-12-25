@@ -10,23 +10,18 @@ import java.sql.SQLException;
 
 public class DatabaseManager {
 
-    // SQLite-Datenbank (Datei wird automatisch erstellt)
-    private static final String JDBC_URL = "jdbc:sqlite:library.db";
+    private static final String URL = "jdbc:sqlite:library.db";
 
-    private static DSLContext context;
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL);
+    }
 
-    /**
-     * Liefert ein jOOQ DSLContext-Objekt für SQLite zurück.
-     */
     public static DSLContext getContext() {
-        if (context == null) {
-            try {
-                Connection connection = DriverManager.getConnection(JDBC_URL);
-                context = DSL.using(connection, SQLDialect.SQLITE);
-            } catch (SQLException e) {
-                throw new RuntimeException("Fehler bei der Verbindung zur SQLite-Datenbank", e);
-            }
+        try {
+            Connection connection = getConnection();
+            return DSL.using(connection, SQLDialect.SQLITE);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error connecting to database", e);
         }
-        return context;
     }
 }
