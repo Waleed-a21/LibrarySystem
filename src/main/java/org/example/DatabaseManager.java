@@ -1,4 +1,4 @@
-package db;
+package org.example;
 
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
