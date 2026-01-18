@@ -1,17 +1,18 @@
 CREATE TABLE IF NOT EXISTS books (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    author TEXT NOT NULL,
-    isbn TEXT NOT NULL UNIQUE,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    isbn VARCHAR(255) NOT NULL,
     published_year INTEGER,
-    total_copies INTEGER NOT NULL DEFAULT 1,
-    available_copies INTEGER NOT NULL DEFAULT 1
+    total_copies INTEGER NOT NULL,
+    available_copies INTEGER NOT NULL,
+    UNIQUE (isbn)
 );
 
 CREATE TABLE IF NOT EXISTS members (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     membership_date TEXT NOT NULL
 );
 
@@ -22,6 +23,6 @@ CREATE TABLE IF NOT EXISTS loans (
     loan_date TEXT NOT NULL,
     due_date TEXT NOT NULL,
     return_date TEXT,
-    FOREIGN KEY (book_id) REFERENCES books(id),
-    FOREIGN KEY (member_id) REFERENCES members(id)
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE
 );
