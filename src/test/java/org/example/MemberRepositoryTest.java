@@ -24,6 +24,13 @@ class MemberRepositoryTest {
         ctx = DSL.using(conn, SQLDialect.SQLITE);
         memberRepo = new MemberRepository(ctx);
 
+        // Initialize DB
+        try {
+            DatabaseManager.initializeDatabase();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         // Aufräumen vor jedem Test
         ctx.deleteFrom(Tables.LOANS).execute();
         ctx.deleteFrom(Tables.MEMBERS).execute();
@@ -36,8 +43,7 @@ class MemberRepositoryTest {
 
         // Assert
         boolean exists = ctx.fetchExists(
-                ctx.selectFrom(Tables.MEMBERS).where(Tables.MEMBERS.EMAIL.eq("max@uni.de"))
-        );
+                ctx.selectFrom(Tables.MEMBERS).where(Tables.MEMBERS.EMAIL.eq("max@uni.de")));
         assertTrue(exists, "Member should be saved in database");
     }
 

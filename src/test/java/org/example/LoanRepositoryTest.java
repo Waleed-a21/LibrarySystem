@@ -28,6 +28,13 @@ class LoanRepositoryTest {
         bookRepo = new BookRepository(ctx);
         memberRepo = new MemberRepository(ctx);
 
+        // Initialize DB
+        try {
+            DatabaseManager.initializeDatabase();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         // Alles leeren (Reihenfolge wegen Foreign Keys wichtig!)
         ctx.deleteFrom(Tables.LOANS).execute();
         ctx.deleteFrom(Tables.BOOKS).execute();
@@ -48,8 +55,7 @@ class LoanRepositoryTest {
 
         // Assert: Loan existiert & Kopien reduziert
         boolean loanExists = ctx.fetchExists(
-                ctx.selectFrom(Tables.LOANS).where(Tables.LOANS.BOOK_ID.eq(bookId))
-        );
+                ctx.selectFrom(Tables.LOANS).where(Tables.LOANS.BOOK_ID.eq(bookId)));
         assertTrue(loanExists);
 
         int available = ctx.select(Tables.BOOKS.AVAILABLE_COPIES)
