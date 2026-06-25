@@ -14,6 +14,7 @@ public class MemberRepository {
         return ctx.insertInto(Tables.MEMBERS)
                 .set(Tables.MEMBERS.NAME, name)
                 .set(Tables.MEMBERS.EMAIL, email)
+                .set(Tables.MEMBERS.MEMBERSHIP_DATE, java.time.LocalDate.now().toString())
                 .returningResult(Tables.MEMBERS.ID)
                 .fetchOne()
                 .getValue(Tables.MEMBERS.ID);
