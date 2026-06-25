@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.repository.DatabaseManager;
 import org.jooq.DSLContext;
 import org.junit.jupiter.api.Test;
 

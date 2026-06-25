@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.repository.DatabaseManager;
+import org.example.repository.MemberRepository;
 import org.jooq.DSLContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
