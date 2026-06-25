@@ -1,4 +1,4 @@
-package org.example;
+package org.example.repository;
 
 import org.example.db.Tables;
 import org.example.db.tables.records.BooksRecord;

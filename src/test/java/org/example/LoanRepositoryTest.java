@@ -1,6 +1,10 @@
 package org.example;
 
 import org.example.db.Tables;
+import org.example.repository.BookRepository;
+import org.example.repository.DatabaseManager;
+import org.example.repository.LoanRepository;
+import org.example.repository.MemberRepository;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
